@@ -1,0 +1,8 @@
+{
+  "username": "newUser",
+  "password": "password123",
+  "height": 170,
+  "currentWeight": 65,
+  "targetWeight": 60,
+  "targetCalories": 2000
+}
