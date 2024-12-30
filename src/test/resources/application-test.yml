@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /meal_plan
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/meal_plan_test
+    username: test_user
+    password: test_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
