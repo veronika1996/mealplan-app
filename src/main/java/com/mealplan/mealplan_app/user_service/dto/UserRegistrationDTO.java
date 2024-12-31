@@ -1,30 +1,30 @@
-package com.mealplan.mealplan_app.user_service.entity;
+package com.mealplan.mealplan_app.user_service.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-import jakarta.persistence.*;
+public class UserRegistrationDTO {
 
-@Entity
-@Table(name = "app_user")
-public class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotEmpty(message = "Username cannot be empty!")
     private String username;
+
+    @NotEmpty(message = "Password cannot be empty!")
     private String password;
+
+    @NotNull(message = "Height cannot be null!")
+    @Positive(message = "Height needs to be a positive value!")
     private Integer height;
+
+    @NotNull(message = "Current weight cannot be null!")
+    @Positive(message = "Current weight needs to be a positive value!")
     private Integer currentWeight;
+
+    @NotNull(message = "Target weight cannot be null!")
+    @Positive(message = "Target weight needs to be a positive value!")
     private Integer targetWeight;
+
     private Integer targetCalories;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -73,5 +73,4 @@ public class UserEntity {
     public void setTargetCalories(Integer targetCalories) {
         this.targetCalories = targetCalories;
     }
-
 }

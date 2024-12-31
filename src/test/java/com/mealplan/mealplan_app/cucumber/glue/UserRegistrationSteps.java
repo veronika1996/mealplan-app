@@ -1,7 +1,7 @@
 package com.mealplan.mealplan_app.cucumber.glue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mealplan.mealplan_app.user_service.dto.UserDTO;
+import com.mealplan.mealplan_app.user_service.dto.UserRegistrationDTO;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles("test")
 public class UserRegistrationSteps {
 
-    private UserDTO userDTO;
+    private UserRegistrationDTO userDTO;
     private ResponseEntity<String> response;
 
     @LocalServerPort
@@ -30,7 +30,7 @@ public class UserRegistrationSteps {
     public void theUserProvidesRegistrationDetailsFromFile(String fileName) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         // Load the JSON file from the resources folder
-        userDTO = objectMapper.readValue(new File("src/test/resources/" + fileName), UserDTO.class);
+        userDTO = objectMapper.readValue(new File("src/test/resources/" + fileName), UserRegistrationDTO.class);
     }
 
     @When("the user sends a registration request")
