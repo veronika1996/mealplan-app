@@ -1,26 +1,28 @@
 package com.mealplan.mealplan_app.user_service.service;
 
-import com.mealplan.mealplan_app.user_service.dto.UserDTO;
 import com.mealplan.mealplan_app.user_service.dto.UserLoginDTO;
+import com.mealplan.mealplan_app.user_service.dto.UserRegistrationDTO;
 import com.mealplan.mealplan_app.user_service.entity.UserEntity;
 import com.mealplan.mealplan_app.user_service.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 @Service
+@Validated
 public class UserService implements UserDetailsService {
-
-    //TODO ADD EXCEPTION HANDLING
 
     private static final String USER_NOT_FOUND_ERROR = "User not found for username: ";
     private static final String LOGIN_SUCCESSFUL = "Login successful!";
     private static final String INVALID_CREDENTIALS = "Invalid credentials!";
+    private static final String USERNAME_ALREADY_EXIST = "Username already exists: ";
 
 
     private final UserRepository userRepository;
@@ -31,10 +33,13 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(UserDTO userDTO) {
+    public void registerUser(@Valid UserRegistrationDTO userDTO) {
 
-        //TODO Add check if user already exists to return error and recommendation to go to login page
-        //TODO Add check for required fields
+        //TODO Add check if user already exists to have recommendation to go to login page - frontend
+
+        if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
+            throw new IllegalArgumentException(USERNAME_ALREADY_EXIST + userDTO.getUsername());
+        }
 
         UserEntity user = new UserEntity();
         user.setUsername(userDTO.getUsername());
@@ -49,7 +54,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public String login(UserLoginDTO userLoginDTO) {
+    public String login(@Valid UserLoginDTO userLoginDTO) {
 
         //TODO Add check for required fields
 

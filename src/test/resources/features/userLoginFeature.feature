@@ -10,8 +10,9 @@ Feature: User Login
     Then the login system responds with "<responseMessage>"
 
     Examples:
-      | fileName                                  | responseMessage                          | username    |
-      | /requests/login/loginValid.json           | Login successful!                        |             |
-      | /requests/login/loginInvalidPassword.json | Invalid credentials!                     |             |
-      | /requests/login/loginNonExistent.json     | User not found for username: <username>  | nonExistent |
-      | /requests/login/loginMissingFields.json   | Invalid request: missing required fields |             |
+      | fileName                                  | responseMessage                          |
+      | /requests/login/loginValid.json           | Login successful!                        |
+      | /requests/login/loginInvalidPassword.json | Invalid credentials!                     |
+      | /requests/login/loginNonExistent.json     | User not found for username: nonExistent |
+      | /requests/login/loginMissingUsername.json | Username cannot be empty!                |
+      | /requests/login/loginMissingPassword.json | Password cannot be empty!                |
