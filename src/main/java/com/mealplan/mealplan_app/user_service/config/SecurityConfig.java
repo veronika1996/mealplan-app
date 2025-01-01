@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.SessionManagementFilter;
 
 
 @Configuration
@@ -37,8 +38,14 @@ public class SecurityConfig {
     }
 
     @Bean
+    CorsFilter corsFilter() {
+        return new CorsFilter();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .addFilterBefore(corsFilter(), SessionManagementFilter.class) //adds your custom CorsFilter
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/users/register", "/users/login", "/css/**", "/js/**").permitAll();
