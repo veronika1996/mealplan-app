@@ -3,5 +3,8 @@
   "password": "Password123",
   "height": 180,
   "currentWeight": 70,
-  "targetWeight": null
+  "targetWeight": null,
+  "yearsOld" : 28,
+  "gender": "FEMALE",
+  "activityLevel": "SEDENTARY"
 }

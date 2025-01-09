@@ -1,5 +1,7 @@
 package com.mealplan.mealplan_app.user_service.dto;
 
+import com.mealplan.mealplan_app.user_service.enums.ActivityLevel;
+import com.mealplan.mealplan_app.user_service.enums.Gender;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -23,6 +25,14 @@ public class UserRegistrationDTO {
     @NotNull(message = "Target weight cannot be null!")
     @Positive(message = "Target weight needs to be a positive value!")
     private Integer targetWeight;
+
+    private ActivityLevel activityLevel;
+
+    private Gender gender;
+
+    @NotNull(message = "Years cannot be null")
+    @Positive(message = "Years need to be positive value!")
+    private Integer yearsOld;
 
     private Integer targetCalories;
 
@@ -72,5 +82,29 @@ public class UserRegistrationDTO {
 
     public void setTargetCalories(Integer targetCalories) {
         this.targetCalories = targetCalories;
+    }
+
+    public ActivityLevel getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(ActivityLevel activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Integer getYearsOld() {
+        return yearsOld;
+    }
+
+    public void setYearsOld(Integer yearsOld) {
+        this.yearsOld = yearsOld;
     }
 }

@@ -1,6 +1,8 @@
 package com.mealplan.mealplan_app.user_service.entity;
 
 
+import com.mealplan.mealplan_app.user_service.enums.ActivityLevel;
+import com.mealplan.mealplan_app.user_service.enums.Gender;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,9 @@ public class UserEntity {
     private Integer currentWeight;
     private Integer targetWeight;
     private Integer targetCalories;
+    private Integer yearsOld;
+    private ActivityLevel activityLevel;
+    private Gender gender;
 
     public Long getId() {
         return id;
@@ -72,6 +77,30 @@ public class UserEntity {
 
     public void setTargetCalories(Integer targetCalories) {
         this.targetCalories = targetCalories;
+    }
+
+    public Integer getYearsOld() {
+        return yearsOld;
+    }
+
+    public void setYearsOld(Integer yearsOld) {
+        this.yearsOld = yearsOld;
+    }
+
+    public ActivityLevel getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(ActivityLevel activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
 }
