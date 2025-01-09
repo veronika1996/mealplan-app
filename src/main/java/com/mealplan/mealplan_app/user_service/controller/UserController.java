@@ -2,6 +2,7 @@ package com.mealplan.mealplan_app.user_service.controller;
 
 import com.mealplan.mealplan_app.user_service.dto.UserLoginDTO;
 import com.mealplan.mealplan_app.user_service.dto.UserRegistrationDTO;
+import com.mealplan.mealplan_app.user_service.dto.UserRegistrationResponseDTO;
 import com.mealplan.mealplan_app.user_service.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/register", consumes = "application/json")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationDTO userDTO) {
-        userService.registerUser(userDTO);
+    public ResponseEntity<UserRegistrationResponseDTO> registerUser(@RequestBody UserRegistrationDTO userDTO) {
+        int targetCalories = userService.registerUser(userDTO);
+        UserRegistrationResponseDTO response = new UserRegistrationResponseDTO(targetCalories);
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("User successfully registered!");
-    }
+                .body(response);
+    };
+
 
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
