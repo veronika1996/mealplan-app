@@ -1,0 +1,15 @@
+[submodule "ingredient_service"]
+	path = ingredient_service
+	url = https://github.com/veronika1996/ingredient_service.git
+[submodule "recipes_service"]
+	path = recipes_service
+	url = https://github.com/veronika1996/recipes_service.git
+[submodule "plans_service"]
+	path = plans_service
+	url = https://github.com/veronika1996/plans_service.git
+[submodule "users_service"]
+	path = users_service
+	url = https://github.com/veronika1996/users_service.git
+[submodule "mealplan-app-front"]
+	path = mealplan-app-front
+	url = https://github.com/veronika1996/mealplan-app-front.git
